@@ -77,8 +77,13 @@ app.directive('tab', function(display) {
         $('.tab').removeClass('active');
         element.addClass('active');
 
+        var num = element.text();
+        if (num === '') {
+          num = $scope.total;
+        }
+
         display.erase();
-        display.appendNumber($scope.total);
+        display.appendNumber(num);
       });
     }
   }
