@@ -2,15 +2,7 @@ var app = angular.module('app', []);
 
 app.service('display', function() {
   var updateTabDisplay = function() {
-    // upon display update, update tab
-    var $updatedDigits = $('#display .digit')
-    var displayedNumAsArray = [];
-    _.each($updatedDigits, function(el) {
-      var digit = $(el).text();
-      displayedNumAsArray.unshift(digit);
-    });
-    var newDisplay = displayedNumAsArray.join('');
-    $('.tab.active').text(newDisplay);
+    $('.tab.active').text($('#display').text());
   };
 
   return {
@@ -19,17 +11,12 @@ app.service('display', function() {
     },
     appendNumber: function(numString) {
       // clear leading zero, if any
-      var firstDigit = $('#display .digit')[0];
-      if ($(firstDigit).text() == '0') {
-        $(firstDigit).remove();
+      var displayText = $('#display').text();
+      var firstDigit = displayText.split('')[0];
+      if (displayText.trim() == '0' || firstDigit == '0') {
+        displayText = displayText.trim().slice(1)
       }
-      var digits = _.map(numString.split(''), function(numString) {
-        return Number(numString);
-      });
-      _.each(digits, function(digit) {
-        var spanHtml = '<span class="digit">' + digit + '</span>';
-        $('#display').prepend(spanHtml);
-      });
+      $('#display').text(displayText + numString);
       updateTabDisplay();
     },
     updateTabDisplay: updateTabDisplay
