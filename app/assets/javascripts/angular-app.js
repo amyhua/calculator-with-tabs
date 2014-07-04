@@ -13,4 +13,22 @@ app.directive('calcButton', function() {
 
     }
   }
+});
+
+app.directive('tab', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      total: '@'
+    },
+    replace: true,
+    template: '<div class="tab">{{total}}</div>',
+    link: function($scope, element) {
+      console.log('tab!', element);
+      element.on('click', function(){
+        $('.tab').removeClass('active');
+        element.addClass('active');
+      });
+    }
+  }
 })

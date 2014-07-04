@@ -58,7 +58,7 @@ body {
     position: relative;
     padding-bottom: 1px;
     top: -6px;
-    z-index: -1;
+    z-index: 1;
 
     &:first-child {
       margin-left: 0;
@@ -88,6 +88,10 @@ body {
 
     box-shadow: none;
 
+    position: absolute;
+    right: 7px;
+    top: -3px;
+
     &:focus {
       opacity: 0.5;
     }
@@ -108,6 +112,9 @@ body {
   border-bottom: solid 8px #DBDBDB;
   border-top: solid 1px #dbdbdb;
   border-top-left-radius: 0;
+
+  position: relative;
+  z-index: 5;
 
   .display {
     $display-padding: 15px;
