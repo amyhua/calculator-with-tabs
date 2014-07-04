@@ -26,8 +26,22 @@ app.directive('tab', function() {
     link: function($scope, element) {
       console.log('tab!', element);
       element.on('click', function(){
+        // make tab "active"
         $('.tab').removeClass('active');
         element.addClass('active');
+
+        // change display, ordering digits backwards
+        var digits = _.map($scope.total.split(''), function(numString) {
+          return Number(numString);
+        });
+        var $display = $('.display .total');
+
+        $display.html('');
+        _.each(digits, function(digit) {
+          var spanHtml = '<span class="digit">' + digit + '</span>';
+          $display.prepend(spanHtml);
+        });
+
       });
     }
   }
