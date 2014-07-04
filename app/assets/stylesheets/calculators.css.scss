@@ -48,6 +48,7 @@ body {
     border-left: none;
     border-color: #ccc;
     border-top: solid 2px #afafaf;
+    cursor: pointer;
 
     background: #E7E7E7;
 
@@ -116,7 +117,7 @@ body {
   position: relative;
   z-index: 5;
 
-  .display {
+  .display-board {
     $display-padding: 15px;
     margin: 8px;
     height: 1em;
@@ -135,7 +136,7 @@ body {
       color: white;
       // take out of page flow, for spacing calculator
       position: absolute;
-      right: $display-padding - 3px;
+      right: $display-padding - 5px;
       top: $display-padding;
       opacity: 0.85;
 
@@ -186,6 +187,7 @@ body {
     color: #5c5c5c;
     padding: 10px 15px;
     margin: 1.5px;
+    cursor: pointer;
 
     &:first-child {
       margin-left: 3px;
