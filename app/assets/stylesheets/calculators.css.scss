@@ -123,7 +123,7 @@ header {
   $btn-small-width-px: 64px;
   $btn-padding: 5px;
   width: $calc-width;
-  height: 409px;
+  height: 439px;
   background: #f0f0f0;
   box-shadow: 5px 21px 20px #77926B;
   padding: $calc-padding;
@@ -135,6 +135,17 @@ header {
 
   position: relative;
   z-index: 5;
+
+  .row.display-summary {
+    @extend .calc-text;
+    height: 1em;
+    min-height: initial;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 0 15px;
+    color: #B3B3B3;
+    font-weight: 200;
+  }
 
   .display-board {
     $display-padding: 15px;

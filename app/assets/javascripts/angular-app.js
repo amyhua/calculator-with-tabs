@@ -1,13 +1,18 @@
 var app = angular.module('app', []);
 
-app.service('display', function() {
+app.service('display', function($rootScope) {
   var updateTabDisplay = function() {
-    $('.tab.active').text($('#display').text());
+    var displayText = $('#display').text();
+    $('.tab.active').text(displayText);
+    $rootScope.currentDisplay = displayText;
   };
 
   return {
     erase: function() {
       $('#display').html('');
+    },
+    reset: function() {
+      $('#display').html('0');
     },
     appendNumber: function(numString) {
       // clear leading zero, if any
@@ -19,10 +24,25 @@ app.service('display', function() {
       $('#display').text(displayText + numString);
       updateTabDisplay();
     },
+    setToNumber: function(numString) {
+      $('#display').text(numString);
+    },
     updateTabDisplay: updateTabDisplay
   }
-})
-app.directive('calcButton', function(display) {
+});
+
+app.controller('CalculatorCtrl', function($scope, $rootScope) {
+  console.log('CalculatorCtrl');
+  $scope.currentDisplay = '0';
+  console.log('$scope', $scope);
+  $scope.$on('updateAnswer', function(event, updatedAnswer) {
+    console.log(updatedAnswer);
+    $rootScope.currentAnswer = updatedAnswer;
+    $scope.$apply();
+  });
+});
+
+app.directive('calcButton', function(display, $rootScope) {
   var $display = $('#display');
   return {
     restrict: 'E',
@@ -36,13 +56,30 @@ app.directive('calcButton', function(display) {
     link: function($scope, element) {
       element.on('click', function() {
         if ($scope.operator == 'clear') {
-          $display.html('<span class="digit">0</span>');
           display.updateTabDisplay();
-          // TODO: create displayHelpers
-        }
-        if ($scope.operator == 'number') {
+        } else if ($scope.operator == 'number') {
           // append to display, for now
           display.appendNumber($scope.action);
+
+        // MATH OPERATORS
+
+        } else if ($scope.operator == 'plus') {
+          // remember last number
+          var numberToAdd = Number($rootScope.currentDisplay);
+          var updatedAnswer = ($rootScope.currentAnswer || 0) + numberToAdd;
+          // TODO: order of operations
+          $scope.$emit('updateAnswer', updatedAnswer);
+          $rootScope.lastOperator = 'plus';
+          display.reset();
+        } else if ($scope.operator == 'equal') {
+          // equal sign requires remembering last operator.
+          // (prevAnswer lastOperator currentDisplay = ... ?)
+          if ($rootScope.lastOperator == 'plus') {
+            var updatedAnswer = Number($rootScope.currentAnswer) + Number($rootScope.currentDisplay);
+            $scope.$emit('updateAnswer', updatedAnswer);
+            // put on display
+            display.setToNumber(updatedAnswer);
+          }
         }
       })
     }
