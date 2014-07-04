@@ -1,0 +1,244 @@
+@font-face {
+  font-family: Calculator;
+  src: url("/fonts/digital-7.ttf");
+}
+
+/* line 12, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+body {
+  font-size: 24px;
+  background: #a8d496;
+}
+
+/* line 17, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+* {
+  font-size: 1em;
+}
+/* line 19, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+*:focus {
+  outline-color: #EBEBEB;
+}
+
+/* line 24, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.container {
+  margin: auto;
+}
+
+/* line 28, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+header {
+  font-family: 'Trebuchet MS', Trebuchet, sans-serif;
+  padding: 30px 15px;
+}
+
+/* line 33, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calc-text {
+  font-family: 'Calculator', 'Ubuntu Monto', monospace;
+}
+
+/* line 37, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.tabs {
+  width: 304px;
+  position: relative;
+  top: 6px;
+  border-radius: 5px 5px 0 0;
+  height: 35px;
+  white-space: nowrap;
+}
+/* line 46, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.tabs .tab, .tabs .tab-new {
+  font-family: 'Calculator', 'Ubuntu Monto', monospace;
+  color: #696969;
+  display: inline-block;
+  padding: 7px;
+  font-size: 18px;
+  padding-bottom: 0;
+  min-width: 40px;
+  height: 26px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border: solid 1px #ddd;
+  border-bottom: solid 1px #f0f0f0;
+  box-shadow: inset 0 -4px 3px #E2E2E2;
+  border-left: none;
+  border-color: #ccc;
+  border-top: solid 2px #afafaf;
+  cursor: pointer;
+  background: #E7E7E7;
+  margin-left: -6px;
+  padding-left: 10px;
+  text-align: right;
+  position: relative;
+  padding-bottom: 1px;
+  top: -6px;
+  z-index: 1;
+}
+/* line 77, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.tabs .tab:first-child, .tabs .tab-new:first-child {
+  margin-left: 0;
+}
+/* line 85, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.tabs .tab.active, .tabs .active.tab-new {
+  background: #f0f0f0;
+  box-shadow: none;
+  z-index: 99;
+  border-bottom: none;
+}
+/* line 93, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.tabs .tab-new {
+  background: #BEDAB3;
+  border-bottom: solid 4px #a8d496;
+  border-left: solid 4px #a8d496;
+  border-top: none;
+  border-right: none;
+  height: 22px;
+  color: #657F5A;
+  box-shadow: none;
+  position: absolute;
+  right: 7px;
+  top: -3px;
+}
+/* line 109, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.tabs .tab-new:focus {
+  opacity: 0.5;
+}
+
+/* line 114, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator {
+  width: 294px;
+  height: 409px;
+  background: #f0f0f0;
+  box-shadow: 5px 21px 20px #77926B;
+  padding: 5px;
+  padding-top: 20px;
+  border-radius: 8px;
+  border-bottom: solid 8px #DBDBDB;
+  border-top: solid 1px #dbdbdb;
+  border-top-left-radius: 0;
+  position: relative;
+  z-index: 5;
+}
+/* line 133, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .display-board {
+  margin: 8px;
+  height: 1em;
+  font-size: 48px;
+  padding: 15px;
+  padding-bottom: 3px;
+  background: #1a1a1a;
+  border-radius: 3px;
+  font-family: 'Calculator', 'Ubuntu Monto', monospace;
+  color: #2b2b2b;
+  text-align: right;
+  position: relative;
+}
+/* line 148, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .display-board .total {
+  color: white;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  opacity: 0.85;
+}
+/* line 156, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .display-board .total .digit {
+  width: 23px;
+  display: block;
+  float: right;
+}
+/* line 163, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .row {
+  width: 294px;
+  margin: auto;
+  min-height: 48px;
+}
+/* line 168, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .row:last-child {
+  height: 96px;
+}
+/* line 172, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .row div[class*='col-'] {
+  float: left;
+}
+/* line 174, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .row div[class*='col-'] .row {
+  margin: 0;
+}
+/* line 178, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .row .col-1 {
+  width: 25%;
+}
+/* line 181, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .row .col-2 {
+  width: 50%;
+}
+/* line 184, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .row .col-3 {
+  width: 218px;
+}
+/* line 187, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .row .col-4 {
+  width: 100%;
+}
+/* line 192, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .calc-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #f2f2f2;
+  border-radius: 3px;
+  border: solid 1px #e8e8e8;
+  font-family: 'Trebuchet MS', Trebuchet, sans-serif;
+  font-size: 1em;
+  color: #5c5c5c;
+  padding: 10px 15px;
+  margin: 1.5px;
+  cursor: pointer;
+}
+/* line 205, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .calc-btn:first-child {
+  margin-left: 3px;
+}
+/* line 208, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .calc-btn:last-child {
+  margin-right: 3px;
+}
+/* line 212, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .calc-btn:active {
+  box-shadow: inset 2px 3px 5px #E7E7E7, inset -2px -2px 5px #E7E7E7;
+  background-color: #EEEEEE;
+  outline: none;
+}
+/* line 218, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .calc-btn:focus {
+  outline: none;
+}
+/* line 222, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .calc-btn.btn-small {
+  width: 64px;
+}
+/* line 226, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .calc-btn.btn-wide {
+  width: 136px;
+}
+/* line 230, /Users/amyhua/Documents/my_projects/calculator/app/assets/stylesheets/calculators.css.scss */
+.calculator .calc-btn.btn-tall {
+  width: 64px;
+  height: 102px;
+  margin: 1.5px;
+  position: relative;
+  left: 2px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+

@@ -21,6 +21,19 @@ body {
   }
 }
 
+.container {
+  margin: auto;
+}
+
+header {
+  font-family: 'Trebuchet MS', Trebuchet, sans-serif;
+  padding: 30px 15px;
+}
+
+.calc-text {
+  font-family: 'Calculator', 'Ubuntu Monto', monospace;
+}
+
 .tabs {
   width: 304px;
   position: relative;
