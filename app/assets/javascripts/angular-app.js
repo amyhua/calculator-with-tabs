@@ -1,6 +1,18 @@
 var app = angular.module('app', []);
 
 app.service('display', function() {
+  var updateTabDisplay = function() {
+    // upon display update, update tab
+    var $updatedDigits = $('#display .digit')
+    var displayedNumAsArray = [];
+    _.each($updatedDigits, function(el) {
+      var digit = $(el).text();
+      displayedNumAsArray.unshift(digit);
+    });
+    var newDisplay = displayedNumAsArray.join('');
+    $('.tab.active').text(newDisplay);
+  };
+
   return {
     erase: function() {
       $('#display').html('');
@@ -18,7 +30,9 @@ app.service('display', function() {
         var spanHtml = '<span class="digit">' + digit + '</span>';
         $('#display').prepend(spanHtml);
       });
-    }
+      updateTabDisplay();
+    },
+    updateTabDisplay: updateTabDisplay
   }
 })
 app.directive('calcButton', function(display) {
@@ -36,6 +50,7 @@ app.directive('calcButton', function(display) {
       element.on('click', function() {
         if ($scope.operator == 'clear') {
           $display.html('<span class="digit">0</span>');
+          display.updateTabDisplay();
           // TODO: create displayHelpers
         }
         if ($scope.operator == 'number') {
