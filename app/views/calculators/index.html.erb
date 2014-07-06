@@ -1,39 +1,39 @@
-<div class="container">
+<div class="container" ng-controller="CalculatorCtrl">
   <header>
     Chris's <span class="calc-text">Awesome</span> Calculator!*
   </header>
-  <div class="tabs">
-    <tab class="active" total="{{currentDisplay || 0}}"></tab>
-    <tab total="23555"></tab>
-    <tab total="181818"></tab>
-    <tab total="1337"></tab>
+  <div class="tabs-header">
+    <div class="tabs">
+      <tab ng-repeat="calculator in calculators" ng-class="{ active: calculator.active}" total="{{calculator.currentDisplay}}"></tab>
+    </div>
     <div class="tab-new">
       &plus; new
     </div>
   </div>
-  <div class="calculator" ng-controller="CalculatorCtrl">
+  <div calculator class="calculator">
     <div class="row display-summary">
     {{currentAnswer}}
     </div>
     <div class="row">
       <div class="display-board">
         00000000000
-        <div class="total" id="display">
-          {{currentDisplay}}
-        </div>
+        <input type="text" class="total" id="display" ng-model="currentDisplay">
+        </input>
       </div>
     </div>
     <div class="row">
       <div class="col-4">
-        <calc-button size="small" operator="memory" action="MC"></calc-button>
-        <calc-button size="small" operator="memory" action="M+"></calc-button>
-        <calc-button size="small" operator="memory" action="M-"></calc-button>
-        <calc-button size="small" operator="memory" action="MR"></calc-button>
+        <calc-button size="small" operator="parens-open" action="("></calc-button>
+        <calc-button size="small" operator="parens-close" action=")"></calc-button>
+        <!-- modulo -->
+        <calc-button size="small" operator="unary" action="&#37;"></calc-button>
+        <!-- square root -->
+        <calc-button size="small" operator="unary" action="&#8730;"></calc-button>
       </div>
     </div>
     <div class="row">
       <div class="col-4">
-        <calc-button size="small" operator="clear" operator="clear" action="C"></calc-button>
+        <calc-button size="small" operator="clear" operator="clear" action="AC"></calc-button>
         <calc-button size="small" operator="plusminus" action="&plusmn;"></calc-button>
         <calc-button size="small" operator="divide" action="/"></calc-button>
         <calc-button size="small" operator="times" action="&lowast; "></calc-button>

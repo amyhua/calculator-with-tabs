@@ -36,7 +36,7 @@ header {
   font-family: 'Calculator', 'Ubuntu Monto', monospace;
 }
 
-.tabs {
+.tabs-header {
   width: 304px;
   position: relative;
   top: 6px;
@@ -64,24 +64,19 @@ header {
     border: solid 1px #ddd;
     border-bottom: solid 1px #f0f0f0;
     box-shadow: inset 0 -4px 3px #E2E2E2;
-    border-left: none;
     border-color: #ccc;
     border-top: solid 2px #afafaf;
     cursor: pointer;
 
     background: #E7E7E7;
-
-    margin-left: -6px;
-    padding-left: 10px;
     text-align: right;
 
     position: relative;
-    padding-bottom: 1px;
     top: -6px;
     z-index: 1;
 
     &:first-child {
-      margin-left: 0;
+      border-left: none;
     }
 
     &:last-child {
@@ -105,6 +100,7 @@ header {
     border-right: none;
     height: 22px;
     color: #657F5A;
+    cursor: pointer;
 
     box-shadow: none;
 
@@ -164,11 +160,21 @@ header {
 
     .total {
       color: white;
-      // take out of page flow, for spacing calculator
       position: absolute;
-      right: $display-padding - 5px;
-      top: $display-padding;
+      right: 0;
+      top: 0;
       opacity: 0.85;
+      background: transparent;
+      border: none;
+      text-align: right;
+      font-family: 'Calculator', monosapce;
+      padding: 13px 10px;
+      width: 100%;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none
+      }
 
       .digit {
         width: 23.5px;
