@@ -88,7 +88,7 @@ app.directive('tab', function(display) {
   }
 });
 
-app.directive('tabNew', function() {
+app.directive('tabNew', function($timeout) {
   return {
     restrict: 'C',
     link: function($scope, element) {
@@ -96,6 +96,25 @@ app.directive('tabNew', function() {
       element.on('click', function() {
         $scope.$emit('createNewCalculator');
         $scope.$digest();
+        $timeout(function() {
+          // resize tabs, if needed
+          $tabs = $('.tab');
+          // if ($tabs.length >= 5) {
+          //   var tabPadding = $tabs.outerWidth(true) - $tabs.width(); // e.g., 15 px
+          // }
+          var availableWidth = $('.tabs').width(); // 63px = space of +new tab
+          var tabWidth = availableWidth / $tabs.length;
+          $('.tab').css({
+            minWidth: 'initial',
+            maxWidth: 'initial',
+            width: 'initial'
+          });
+          $('.tab').outerWidth(tabWidth);
+          console.log('tabWidth', tabWidth);
+          console.log('widths', tabWidth * $tabs.length)
+          // make new tab active
+          $('.tab:last-child').click();
+        });
       });
     }
   }
