@@ -1,8 +1,7 @@
 app.service('display', function($rootScope) {
   var updateTabDisplay = function() {
-    var displayText = $('#display').text();
+    var displayText = $('#display').val();
     $('.tab.active').text(displayText);
-    $rootScope.currentDisplay = displayText;
   };
 
   return {
@@ -16,16 +15,16 @@ app.service('display', function($rootScope) {
     },
     appendNumber: function(numString) {
       // clear leading zero, if any
-      var displayText = $('#display').text();
+      var displayText = $('#display').val();
       var firstDigit = displayText.split('')[0];
       if (displayText.trim() == '0' || firstDigit == '0') {
         displayText = displayText.trim().slice(1)
       }
-      $('#display').text(displayText + numString);
-      updateTabDisplay();
+      $('#display').val(displayText + numString);
     },
     setToNumber: function(numString) {
-      $('#display').text(numString);
+      $('#display').val(numString);
+      updateTabDisplay();
     },
     updateTabDisplay: updateTabDisplay
   }

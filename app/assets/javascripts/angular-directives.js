@@ -1,8 +1,15 @@
 app.directive('calculator', function($rootScope, display) {
   return {
     restrict: 'A',
+    scope: {
+      activeCalculator: '='
+    },
     link: function($scope, element) {
-      console.log('calc');
+      $scope.$watch('activeCalculator', function(newCalc) {
+        display.setToNumber(newCalc.currentDisplay);
+        // tell buttons to switch out active calculator
+        $scope.$broadcast('toggleCalculator', newCalc);
+      }, true);
       $scope.$watch('currentDisplay', function(currentDisplay) {
         console.log('currentDisplay', currentDisplay);
       });
@@ -26,11 +33,21 @@ app.directive('calcButton', function(display, $rootScope) {
     replace: true,
     template: '<button class="calc-btn btn-{{size}}">{{action}}</button>',
     link: function($scope, element) {
+      $scope.$on('toggleCalculator', function(event, newCalc) {
+        $scope.activeCalculator = newCalc;
+      });
+
+      $scope.$watch('activeCalculator', function(newCalc) {
+        console.log('calcButton: modify parent activeCalc');
+        $scope.$parent.activeCalculator = newCalc;
+      });
+
       element.on('click', function() {
         if ($scope.operator == 'clear') {
           display.reset();
         } else if ($scope.operator == 'number') {
           // append to display, for now
+
           display.appendNumber($scope.action);
 
         // MATH OPERATORS
@@ -66,23 +83,21 @@ app.directive('tab', function(display) {
   return {
     restrict: 'E',
     scope: {
-      total: '@'
+      total: '@',
+      id: '='
     },
     replace: true,
     template: '<div class="tab">{{total}}</div>',
     link: function($scope, element) {
       element.on('click', function(){
         // make tab "active"
+
+        // CSS
         $('.tab').removeClass('active');
         element.addClass('active');
 
-        var num = element.text();
-        if (num === '') {
-          num = $scope.total;
-        }
-
-        display.erase();
-        display.appendNumber(num);
+        // switch out calculators
+        $scope.$emit('toggleCalculator', $scope.id);
       });
     }
   }
@@ -109,7 +124,7 @@ app.directive('tabNew', function($timeout) {
             maxWidth: 'initial',
             width: 'initial'
           });
-          $('.tab').outerWidth(tabWidth);
+          $('.tab').outerWidth(tabWidth); 
           console.log('tabWidth', tabWidth);
           console.log('widths', tabWidth * $tabs.length)
           // make new tab active

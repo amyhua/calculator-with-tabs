@@ -1,16 +1,16 @@
 <div class="container" ng-controller="CalculatorCtrl">
   <header>
-    Chris's <span class="calc-text">Awesome</span> Calculator!*
+    A Work in Progress...
   </header>
   <div class="tabs-header">
     <div class="tabs">
-      <tab ng-repeat="calculator in calculators" ng-class="{ active: calculator.active}" total="{{calculator.currentDisplay}}"></tab>
+      <tab ng-repeat="calculator in calculators" ng-class="{ active: calculator.active}" total="{{calculator.currentDisplay}}" id="calculator.id"></tab>
     </div>
     <div class="tab-new">
       &plus; new
     </div>
   </div>
-  <div calculator class="calculator">
+  <div calculator class="calculator" active-calculator="activeCalculator">
     <div class="row display-summary">
     {{currentAnswer}}
     </div>

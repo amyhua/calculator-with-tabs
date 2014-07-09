@@ -1,10 +1,4 @@
 app.controller('CalculatorCtrl', function($scope, $rootScope) {
-  $scope.currentDisplay = '0';
-  $rootScope.lastOperator = 'initialize';
-  $scope.$on('updateAnswer', function(event, updatedAnswer) {
-    $rootScope.currentAnswer = updatedAnswer;
-    $scope.$apply();
-  });
 
   /*
   calculator scenarios
@@ -52,6 +46,7 @@ app.controller('CalculatorCtrl', function($scope, $rootScope) {
 
   $scope.calculators = [
     {
+      id: 1,
       currentDisplay: '231',
       lastBinaryOperator: '*',
       previousAnswer: '3',
@@ -59,6 +54,7 @@ app.controller('CalculatorCtrl', function($scope, $rootScope) {
       // operator: binary
     },
     {
+      id: 2,
       currentDisplay: '111',
       lastBinaryOperator: '*',
       previousAnswer: '3',
@@ -66,6 +62,7 @@ app.controller('CalculatorCtrl', function($scope, $rootScope) {
       // operator: binary
     },
     {
+      id: 3,
       currentDisplay: '1232',
       lastBinaryOperator: '*',
       previousAnswer: '3',
@@ -74,13 +71,20 @@ app.controller('CalculatorCtrl', function($scope, $rootScope) {
     }
   ];
 
+  $scope.activeCalculator = $scope.calculators[0];
+
   $scope.$on('createNewCalculator', function() {
     $scope.calculators.push({
+      id: Date.now(),
       currentDisplay: '0',
       lastBinaryOperator: 'initiate',
-      previousAnswer: null
+      previousAnswer: null,
     });
   });
 
-  console.log($scope);
+  $scope.$on('toggleCalculator', function(event, calcId) {
+    console.log('got it! toggleCalculator');
+    $scope.activeCalculator = _.find($scope.calculators, { id: calcId });
+    $scope.$apply();
+  });
 });
